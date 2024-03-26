@@ -1,0 +1,84 @@
+import { Flex, HStack, Text, VStack } from '@chakra-ui/react';
+import sampleCode from './sampleCode';
+import { Button, CodeBlock } from '@/components/ui';
+
+const HomeContent = () => {
+	return (
+		<Flex
+			direction='column'
+			gap='30px'
+			align='center'
+			pt={8}
+		>
+			<VStack
+				spacing={2}
+				w='100%'
+			>
+				<Text variant='p1'>Let's be honest.</Text>
+				<Text variant='p1'>Writing and deploying your own smart contract is hard.</Text>
+				<Text
+					variant='p1'
+					fontWeight='500'
+				>
+					I mean, what the hell does the code below even do?
+				</Text>
+			</VStack>
+			<CodeBlock
+				fileName='deployERC20.js'
+				language='javascript'
+			>
+				{sampleCode}
+			</CodeBlock>
+			<VStack
+				gap={3}
+				w='100%'
+			>
+				<Text
+					variant='p1'
+					fontWeight='500'
+					fontSize='24px'
+				>
+					We're here to take code out of the equation (if you want to).
+				</Text>
+				<Text variant='p1'>
+					Deploy and interact with your own NFTs and Tokens on Quai Network, <strong>with no code required.</strong>
+				</Text>
+				<HStack
+					pt={4}
+					gap={8}
+					pb={3}
+					w='100%'
+					justify='center'
+				>
+					<Button
+						variant='primary'
+						size='xl'
+						newTab={false}
+						href='/deploy-erc20'
+					>
+						Deploy a Token
+					</Button>
+					<Button
+						variant='primary'
+						href='/deploy-erc721'
+						newTab={false}
+						size='xl'
+					>
+						Deploy an NFT
+					</Button>
+				</HStack>
+				<Button
+					variant='primary'
+					size='xl'
+					w='fit-content'
+					href='/interact'
+					newTab={false}
+				>
+					Interact with a Contract
+				</Button>
+			</VStack>
+		</Flex>
+	);
+};
+
+export default HomeContent;
