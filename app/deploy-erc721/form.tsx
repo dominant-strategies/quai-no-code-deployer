@@ -4,7 +4,7 @@ const Form = ({ isError, formState, setFormState }: ERC721FormProps) => {
 	return (
 		<>
 			<FormControl isInvalid={isError.error && isError.type === 'name'}>
-				<FormLabel>Collection Name</FormLabel>
+				<FormLabel>Collection Name:</FormLabel>
 				<Input
 					type='text'
 					value={formState.name}
@@ -24,7 +24,7 @@ const Form = ({ isError, formState, setFormState }: ERC721FormProps) => {
 				)}
 			</FormControl>
 			<FormControl isInvalid={isError.error && isError.type === 'symbol'}>
-				<FormLabel>Collection Symbol</FormLabel>
+				<FormLabel>Collection Symbol:</FormLabel>
 				<Input
 					type='text'
 					value={formState.symbol}
@@ -44,7 +44,7 @@ const Form = ({ isError, formState, setFormState }: ERC721FormProps) => {
 				)}
 			</FormControl>
 			<FormControl isInvalid={isError.error && isError.type === 'uri'}>
-				<FormLabel>Metadata URI</FormLabel>
+				<FormLabel>Metadata URI:</FormLabel>
 				<Input
 					type='text'
 					value={formState.uri}
@@ -64,7 +64,7 @@ const Form = ({ isError, formState, setFormState }: ERC721FormProps) => {
 				)}
 			</FormControl>
 			<FormControl isInvalid={isError.error && isError.type === 'collectionSize'}>
-				<FormLabel>Collection Size</FormLabel>
+				<FormLabel>Collection Size:</FormLabel>
 				<NumberInput>
 					<NumberInputField
 						value={formState.collectionSize}

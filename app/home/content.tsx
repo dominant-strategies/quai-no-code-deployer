@@ -14,13 +14,13 @@ const HomeContent = () => {
 				spacing={2}
 				w='100%'
 			>
-				<Text variant='p1'>Let's be honest.</Text>
+				<Text variant='p1'>Let's be honest:</Text>
 				<Text variant='p1'>Writing and deploying your own smart contract is hard.</Text>
 				<Text
 					variant='p1'
 					fontWeight='500'
 				>
-					I mean, what the hell does the code below even do?
+					You shouldn't need to write code to start bringing your Web3 project to life.
 				</Text>
 			</VStack>
 			<CodeBlock
@@ -38,10 +38,10 @@ const HomeContent = () => {
 					fontWeight='500'
 					fontSize='24px'
 				>
-					We're here to take code out of the equation (if you want to).
+					We're here to take code out of the equation.
 				</Text>
 				<Text variant='p1'>
-					Deploy and interact with your own NFTs and Tokens on Quai Network, <strong>with no code required.</strong>
+					Deploy and interact with your own Tokens and NFTs on Quai Network <strong>with no code required.</strong>
 				</Text>
 				<HStack
 					pt={4}
