@@ -8,11 +8,13 @@ const HomeContent = () => {
 			direction='column'
 			gap='30px'
 			align='center'
-			pt={8}
+			pt={4}
 		>
 			<VStack
 				spacing={2}
 				w='100%'
+				maxW='90vw'
+				textAlign='center'
 			>
 				<Text variant='p1'>Let's be honest:</Text>
 				<Text variant='p1'>Writing and deploying your own smart contract is hard.</Text>
@@ -32,6 +34,8 @@ const HomeContent = () => {
 			<VStack
 				gap={3}
 				w='100%'
+				textAlign='center'
+				maxW='90vw'
 			>
 				<Text
 					variant='p1'

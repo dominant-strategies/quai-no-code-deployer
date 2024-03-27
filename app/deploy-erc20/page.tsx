@@ -44,7 +44,7 @@ export default function deployERC20() {
 				position: 'top-right',
 			},
 			success: ({ erc20, txReceipt }: any) => ({
-				title: `${erc20.name} deployed successfully!`,
+				title: `${name} deployed successfully!`,
 				description: (
 					<Flex direction='column'>
 						<Button
@@ -56,10 +56,15 @@ export default function deployERC20() {
 						>
 							View In Explorer
 						</Button>
-						<Text variant='p2'>Contract Address: {txReceipt.contractAddress}</Text>
+						<Text
+							variant='p2'
+							color='white'
+						>
+							Contract Address: {txReceipt.contractAddress}
+						</Text>
 					</Flex>
 				),
-				duration: 5000,
+				duration: null,
 				position: 'top-right',
 				isClosable: true,
 			}),
@@ -111,13 +116,13 @@ export default function deployERC20() {
 						<Text variant='h3'>The ERC20 Contract</Text>
 						<Text variant='p2'>
 							The Quai Token deployer is configured to deploy the <strong>base implementation of Open Zeppelin's ERC20 standard</strong>{' '}
-							expanded with a Ownable modifier contract. Deploying the contract will create a new single-chain token with the specified name,
-							symbol, and supply. You, as the owner, will be minted the entirety of the token supply, and will be able to mint new tokens and transfer ownership of the
-							token contract.
+							expanded with a Ownable modifier contract. Deploying the contract will create a new single-chain token with the specified
+							name, symbol, and supply. You, as the owner, will be minted the entirety of the token supply, and will be able to mint new
+							tokens and transfer ownership of the token contract.
 						</Text>
 						<Text variant='p2'>
-							While the contract below is useful for simple deployments, it lacks customizability. If your token requires more
-							advanced features such as custom distribution, consider writing your own contract and deploying it via Hardhat.
+							While the contract below is useful for simple deployments, it lacks customizability. If your token requires more advanced
+							features such as custom distribution, consider writing your own contract and deploying it via Hardhat.
 						</Text>
 					</VStack>
 					<CodeBlock

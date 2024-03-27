@@ -1,17 +1,17 @@
-import type { Metadata } from 'next'
-import { Providers } from './providers'
-import { fonts } from './fonts'
-import { Nav, Footer } from '@/components/common'
+import type { Metadata } from 'next';
+import { Providers } from './providers';
+import { fonts } from './fonts';
+import { Nav } from '@/components/common';
 
 export const metadata: Metadata = {
 	title: 'Quai Token Deployer',
 	description: 'A simple interface built to deploy NFT and Tokens on Quai Network.',
-}
+};
 
 export default function RootLayout({
 	children,
 }: Readonly<{
-	children: React.ReactNode
+	children: React.ReactNode;
 }>) {
 	return (
 		<html
@@ -20,11 +20,10 @@ export default function RootLayout({
 		>
 			<body>
 				<Providers>
-					<Nav />
-					{children}
-					<Footer />
+						<Nav />
+						{children}
 				</Providers>
 			</body>
 		</html>
-	)
+	);
 }

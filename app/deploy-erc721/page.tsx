@@ -50,7 +50,7 @@ export default function deployERC721() {
 				position: 'top-right',
 			},
 			success: ({ erc721, txReceipt }: any) => ({
-				title: `${erc721.name} deployed successfully!`,
+				title: `${name} deployed successfully!`,
 				description: (
 					<Flex direction='column'>
 						<Button
@@ -62,10 +62,15 @@ export default function deployERC721() {
 						>
 							View In Explorer
 						</Button>
-						<Text variant='p2'>Contract Address: {txReceipt.contractAddress}</Text>
+						<Text
+							variant='p2'
+							color='white'
+						>
+							Contract Address: {txReceipt.contractAddress}
+						</Text>
 					</Flex>
 				),
-				duration: 5000,
+				duration: null,
 				position: 'top-right',
 				isClosable: true,
 			}),

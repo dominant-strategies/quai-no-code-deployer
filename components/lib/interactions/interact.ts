@@ -11,6 +11,10 @@ export const callERC20ContractMethod = async (
 	rpcProvider: any,
 	viewOnly: boolean | undefined
 ) => {
+	console.log('method', method);
+	console.log('args', args);
+	console.log('contractAddress', contractAddress);
+	console.log('viewOnly', viewOnly);
 	try {
 		const ERC20contract = new quais.Contract(contractAddress, ERC20.abi, web3Provider.getSigner());
 		if (viewOnly === true) {
@@ -21,7 +25,8 @@ export const callERC20ContractMethod = async (
 			return Promise.resolve({ result: erc20, method: method });
 		} else {
 			const erc20 = await ERC20contract[method](...args);
-			const txReceipt = await pollFor(rpcProvider, 'getTransactionReceipt', [erc20.deployTransaction.hash], 1.5, 1);
+			const txReceipt = await pollFor(rpcProvider, 'getTransactionReceipt', [erc20.hash], 1.5, 1);
+			console.log('txReceipt', txReceipt);
 			return Promise.resolve(txReceipt);
 		}
 	} catch (err) {
@@ -37,6 +42,10 @@ export const callERC721ContractMethod = async (
 	rpcProvider: any,
 	viewOnly: boolean | undefined
 ) => {
+	console.log('method', method);
+	console.log('args', args);
+	console.log('contractAddress', contractAddress);
+	console.log('viewOnly', viewOnly);
 	try {
 		const ERC721contract = new quais.Contract(contractAddress, ERC721.abi, web3Provider.getSigner());
 		if (viewOnly) {
@@ -47,7 +56,7 @@ export const callERC721ContractMethod = async (
 			return Promise.resolve({ result: erc721, method: method });
 		} else {
 			const erc721 = await ERC721contract[method](...args);
-			const txReceipt = await pollFor(rpcProvider, 'getTransactionReceipt', [erc721.deployTransaction.hash], 1.5, 1);
+			const txReceipt = await pollFor(rpcProvider, 'getTransactionReceipt', [erc721.hash], 1.5, 1);
 			return Promise.resolve(txReceipt);
 		}
 	} catch (err) {
