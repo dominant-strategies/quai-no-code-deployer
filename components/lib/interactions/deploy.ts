@@ -6,7 +6,6 @@ import ERC721 from '../contracts/erc721/ERC721.json'
 export const deployToken = async ({ name, symbol, supply, web3Provider, rpcProvider }: DeployERC20Props) => {
 	try {
 		const ERC20contract = new quais.ContractFactory(ERC20.abi, ERC20.bytecode, web3Provider.getSigner())
-		console.log(supply.toString())
 		const erc20 = await ERC20contract.deploy(name, symbol, supply.toString(), { gasLimit: 5000000 })
 		const txReceipt = await pollFor(rpcProvider, 'getTransactionReceipt', [erc20.deployTransaction.hash], 1.5, 1)
 		return Promise.resolve({ erc20, txReceipt })

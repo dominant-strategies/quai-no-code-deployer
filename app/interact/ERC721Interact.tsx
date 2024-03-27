@@ -40,16 +40,16 @@ const ERC721Interact = () => {
 				position: 'top-right',
 			},
 			success: (txData: any) => ({
-				title: `${txData?.hash ? 'Transaction Successful' : 'View-only data:'}`,
+				title: `${txData?.transactionHash ? 'Transaction Successful' : 'View-only data:'}`,
 				description: (
 					<Flex
 						direction='column'
 						gap={2}
 					>
-						{txData?.hash ? (
+						{txData?.transactionHash ? (
 							<Button
 								variant='link'
-								href={buildTransactionUrl(account!.shard.rpcName, txData.hash)}
+								href={buildTransactionUrl(account!.shard.rpcName, txData.transactionHash)}
 								newTab={true}
 								color='white'
 								fontWeight='600'
@@ -67,14 +67,14 @@ const ERC721Interact = () => {
 						)}
 					</Flex>
 				),
-				duration: 10000,
+				duration: null,
 				position: 'top-right',
 				isClosable: true,
 			}),
 			error: (error: any) => ({
 				title: 'Error',
 				description: error.reason || error.message || 'An unknown error occurred',
-				duration: 5000,
+				duration: 10000,
 				position: 'top-right',
 				isClosable: true,
 			}),

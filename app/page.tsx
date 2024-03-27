@@ -6,7 +6,7 @@ export default function Home() {
 	return (
 		<BaseLayout>
 			<Center
-				pt={{ base: 2, md: 20 }}
+				pt={{ base: 2, md: 10 }}
 				textAlign='center'
 			>
 				<Text variant='display'>Quai NoCode Deployer</Text>
