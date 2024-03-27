@@ -27,19 +27,19 @@ export default function deployERC721() {
 		const uri = formState.uri;
 		const collectionSize = formState.collectionSize;
 		if (!name) {
-			setIsError({ error: true, message: 'Collection Name is required', type: 'name' });
+			setIsError({ error: true, message: 'Collection Name is required.', type: 'name' });
 			return;
 		}
 		if (!symbol) {
-			setIsError({ error: true, message: 'Collection Symbol is required', type: 'symbol' });
+			setIsError({ error: true, message: 'Collection Symbol is required.', type: 'symbol' });
 			return;
 		}
 		if (!uri) {
-			setIsError({ error: true, message: 'Metadata URI is required', type: 'uri' });
+			setIsError({ error: true, message: 'Metadata URI is required.', type: 'uri' });
 			return;
 		}
 		if (!collectionSize) {
-			setIsError({ error: true, message: 'Collection Size is required', type: 'collectionSize' });
+			setIsError({ error: true, message: 'Collection Size is required.', type: 'collectionSize' });
 			return;
 		}
 		setIsError({ error: false, message: '', type: '' });
@@ -93,7 +93,7 @@ export default function deployERC721() {
 					maxW='600px'
 					align='center'
 				>
-					<Text variant='p1'>Easily deploy an NFT collection on Quai Network</Text>
+					<Text variant='p1'>Easily deploy an NFT collection on Quai Network.</Text>
 					<Form
 						isError={isError}
 						formState={formState}
@@ -114,7 +114,7 @@ export default function deployERC721() {
 					gap={6}
 				>
 					<VStack align='flex-start'>
-						<Text variant='h3'>ERC721 Contract</Text>
+						<Text variant='h3'>The ERC721 Contract</Text>
 						<Text variant='p2'>
 							The Quai NFT deployer is configured to deploy the <strong>base implementation of Open Zeppelin's ERC721 standard</strong>{' '}
 							expanded with the URI-Storage extension and Ownable modifier contract. Deploying the contract will create a new NFT collection

@@ -4,7 +4,7 @@ const Form = ({ isError, formState, setFormState }: ERC20FormProps) => {
 	return (
 		<>
 			<FormControl isInvalid={isError.error && isError.type === 'name'}>
-				<FormLabel>Token Name</FormLabel>
+				<FormLabel>Token Name:</FormLabel>
 				<Input
 					type='text'
 					value={formState.name}
@@ -24,7 +24,7 @@ const Form = ({ isError, formState, setFormState }: ERC20FormProps) => {
 				)}
 			</FormControl>
 			<FormControl isInvalid={isError.error && isError.type === 'symbol'}>
-				<FormLabel>Token Symbol</FormLabel>
+				<FormLabel>Token Symbol:</FormLabel>
 				<Input
 					type='text'
 					value={formState.symbol}
@@ -44,7 +44,7 @@ const Form = ({ isError, formState, setFormState }: ERC20FormProps) => {
 				)}
 			</FormControl>
 			<FormControl isInvalid={isError.error && isError.type === 'supply'}>
-				<FormLabel>Token Supply</FormLabel>
+				<FormLabel>Token Supply:</FormLabel>
 				<NumberInput>
 					<NumberInputField
 						value={formState.supply}
