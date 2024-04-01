@@ -11,15 +11,15 @@ import styles from './styles';
 
 // set base theme config
 const config: ThemeConfig = {
-	initialColorMode: 'dark',
-	useSystemColorMode: false,
+  initialColorMode: 'dark',
+  useSystemColorMode: false,
 };
 
 const overrides = {
-	config,
-	styles,
-	...foundations,
-	components,
+  config,
+  styles,
+  ...foundations,
+  components,
 };
 
 export const theme = extendTheme(overrides);
