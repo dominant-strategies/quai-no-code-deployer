@@ -10,7 +10,7 @@ import { StateContext } from '@/store';
 import { buildTransactionUrl } from '@/components/lib/utils';
 import ERC20 from '@/components/lib/contracts/erc20/ERC20';
 
-export default function deployERC20() {
+const DeployERC20 = () => {
 	const toast = useToast();
 	const { rpcProvider, web3Provider, account } = useContext(StateContext);
 	const [isError, setIsError] = useState<{ error: boolean; message: string; type: string }>({ error: false, message: '', type: '' });
@@ -97,10 +97,12 @@ export default function deployERC20() {
 						isError={isError}
 						formState={formState}
 						setFormState={setFormState}
+						account={account}
 					/>
 					<Button
 						variant='primary'
 						onClick={handleSubmit}
+						disabled={!account}
 						w='30%'
 					>
 						Deploy
@@ -115,8 +117,9 @@ export default function deployERC20() {
 					<VStack align='flex-start'>
 						<Text variant='h3'>The ERC20 Contract</Text>
 						<Text variant='p2'>
-							The Quai Token deployer is configured to deploy the <strong>base implementation of Open Zeppelin's ERC20 standard</strong>{' '}
-							expanded with a Ownable modifier contract. Deploying the contract will create a new single-chain token with the specified
+							The Quai Token deployer is configured to deploy the
+							<strong>{`base implementation of Open Zeppelin's ERC20 standard`}</strong>
+							`expanded with a Ownable modifier contract. Deploying the contract will create a new single-chain token with the specified
 							name, symbol, and supply. You, as the owner, will be minted the entirety of the token supply, and will be able to mint new
 							tokens and transfer ownership of the token contract.
 						</Text>
@@ -135,4 +138,6 @@ export default function deployERC20() {
 			</Flex>
 		</BaseLayout>
 	);
-}
+};
+
+export default DeployERC20;

@@ -1,9 +1,12 @@
 import { FormControl, FormErrorMessage, FormHelperText, FormLabel, Input, NumberInput, NumberInputField, Text } from '@chakra-ui/react';
 
-const Form = ({ isError, formState, setFormState }: ERC721FormProps) => {
+const Form = ({ isError, formState, setFormState, account }: ERC721FormProps) => {
 	return (
 		<>
-			<FormControl isInvalid={isError.error && isError.type === 'name'}>
+			<FormControl
+				isInvalid={isError.error && isError.type === 'name'}
+				isDisabled={!account}
+			>
 				<FormLabel>Collection Name:</FormLabel>
 				<Input
 					type='text'
@@ -23,7 +26,10 @@ const Form = ({ isError, formState, setFormState }: ERC721FormProps) => {
 					</FormHelperText>
 				)}
 			</FormControl>
-			<FormControl isInvalid={isError.error && isError.type === 'symbol'}>
+			<FormControl
+				isInvalid={isError.error && isError.type === 'symbol'}
+				isDisabled={!account}
+			>
 				<FormLabel>Collection Symbol:</FormLabel>
 				<Input
 					type='text'
@@ -43,7 +49,10 @@ const Form = ({ isError, formState, setFormState }: ERC721FormProps) => {
 					</FormHelperText>
 				)}
 			</FormControl>
-			<FormControl isInvalid={isError.error && isError.type === 'uri'}>
+			<FormControl
+				isInvalid={isError.error && isError.type === 'uri'}
+				isDisabled={!account}
+			>
 				<FormLabel>Metadata URI:</FormLabel>
 				<Input
 					type='text'
@@ -59,11 +68,14 @@ const Form = ({ isError, formState, setFormState }: ERC721FormProps) => {
 					</FormErrorMessage>
 				) : (
 					<FormHelperText>
-						<Text>Enter the CID for your collection's metadata ".json" files.</Text>
+						<Text>{`Enter the CID for your collection's metadata ".json" files.`}</Text>
 					</FormHelperText>
 				)}
 			</FormControl>
-			<FormControl isInvalid={isError.error && isError.type === 'collectionSize'}>
+			<FormControl
+				isInvalid={isError.error && isError.type === 'collectionSize'}
+				isDisabled={!account}
+			>
 				<FormLabel>Collection Size:</FormLabel>
 				<NumberInput>
 					<NumberInputField

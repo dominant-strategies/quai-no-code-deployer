@@ -27,6 +27,14 @@ const ConnectButton = () => {
 					onClick={connectHandler}
 					disabled={!!account}
 					w='fit-content'
+					_hover={{
+						_disabled: {
+							background: 'white',
+						},
+					}}
+					_disabled={{
+						background: 'white',
+					}}
 				>
 					{account ? (
 						<Flex gap='10px'>

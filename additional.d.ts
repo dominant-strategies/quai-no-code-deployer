@@ -18,11 +18,13 @@ declare global {
 		isError: { error: boolean; message: string; type: string };
 		formState: ERC721FormStateProps;
 		setFormState: Dispatch<SetStateAction<ERC721FormStateProps>>;
+		account: account;
 	}
 	interface ERC20FormProps {
 		isError: { error: boolean; message: string; type: string };
 		formState: ERC20FormStateProps;
 		setFormState: Dispatch<SetStateAction<ERC20FormStateProps>>;
+		account: account;
 	}
 
 	type CodeBlockProps = Omit<JSX.IntrinsicElements['pre'], 'children'> &

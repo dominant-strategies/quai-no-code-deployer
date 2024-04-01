@@ -76,9 +76,15 @@ const Button = defineStyleConfig({
 		fontWeight: '400',
 		fontFamily: 'var(--font-rubik)',
 		_disabled: {
-			opacity: '0.9',
+			opacity: '0.8',
 			cursor: 'not-allowed',
-			bg: 'inherit',
+			bg: 'gray.700',
+		},
+		_hover: {
+			_disabled: {
+				background: 'black',
+				cursor: 'not-allowed',
+			},
 		},
 	},
 	sizes: {

@@ -10,7 +10,7 @@ import { StateContext } from '@/store';
 import { buildTransactionUrl } from '@/components/lib/utils';
 import ERC721 from '@/components/lib/contracts/erc721/ERC721';
 
-export default function deployERC721() {
+const DeployERC721 = () => {
 	const toast = useToast();
 	const { rpcProvider, web3Provider, account } = useContext(StateContext);
 	const [isError, setIsError] = useState<{ error: boolean; message: string; type: string }>({ error: false, message: '', type: '' });
@@ -103,10 +103,12 @@ export default function deployERC721() {
 						isError={isError}
 						formState={formState}
 						setFormState={setFormState}
+						account={account}
 					/>
 					<Button
 						variant='primary'
 						onClick={handleSubmit}
+						disabled={!account}
 						w='30%'
 					>
 						Deploy
@@ -121,7 +123,7 @@ export default function deployERC721() {
 					<VStack align='flex-start'>
 						<Text variant='h3'>The ERC721 Contract</Text>
 						<Text variant='p2'>
-							The Quai NFT deployer is configured to deploy the <strong>base implementation of Open Zeppelin's ERC721 standard</strong>{' '}
+							The Quai NFT deployer is configured to deploy the <strong>{`base implementation of Open Zeppelin's ERC721 standard`}</strong>{' '}
 							expanded with the URI-Storage extension and Ownable modifier contract. Deploying the contract will create a new NFT collection
 							with the specified name, symbol, metadata, and collection size. You as the owner will be able to mint new NFTs and transfer
 							ownership of the collection.
@@ -142,4 +144,6 @@ export default function deployERC721() {
 			</Flex>
 		</BaseLayout>
 	);
-}
+};
+
+export default DeployERC721;

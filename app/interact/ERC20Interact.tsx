@@ -27,7 +27,6 @@ const ERC20Interact = () => {
 			return;
 		}
 		const { parsedInputs, methodVisibility } = assignTypesToArgs(method, inputValues[method], 'ERC20');
-		console.log(parsedInputs, methodVisibility);
 		let viewOnly;
 		if (methodVisibility === 'view' || methodVisibility === 'pure') {
 			viewOnly = true;

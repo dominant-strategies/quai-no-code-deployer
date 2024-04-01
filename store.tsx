@@ -3,7 +3,7 @@
 import React, { FC, createContext, useReducer, ReactNode } from 'react';
 
 interface StateData {
-	account: { addr: string; shard: { name: string; rpcName: string } } | undefined;
+	account: account;
 	web3Provider: any | undefined;
 	rpcProvider: any | undefined;
 	activeButton: string;

@@ -80,6 +80,19 @@ export const validateERC20MethodTypes = (method: string, args: string) => {
 	return true;
 };
 
+/*
+ * This function is used to parse the arguments for a method call and assign the correct types
+ * It has unique typing for both ERC20 and ERC721 contracts
+ * It trims any whitespace from the inputs
+ * It also ascertains the visibility of the method
+ *
+ * @param method - the method to call
+ * @param args - the arguments to pass to the method (a comma separated string of inputs)
+ * @param tokenType - the type of token (ERC20 or ERC721)
+ *
+ * @returns object - parsedInputs: the parsed inputs with the correct types assigned
+ * methodVisibility: the visibility of the method (view, pure, nonpayable, payable)
+ */
 export const assignTypesToArgs = (method: string, args: string | undefined, tokenType: 'ERC20' | 'ERC721') => {
 	let inputs: Array<string>;
 	if (args === undefined) {
@@ -87,24 +100,24 @@ export const assignTypesToArgs = (method: string, args: string | undefined, toke
 	} else {
 		inputs = args.split(',');
 	}
-
 	const abi = tokenType === 'ERC20' ? ERC20.abi : ERC721.abi;
 	const methodAbi = abi.find((abi) => abi.name === method);
+	const methodVisibility = methodAbi?.stateMutability;
 	const paramTypes = methodAbi!.inputs.map((input) => input.type);
 	const parsedInputs = inputs.map((input, index) => {
 		const type = paramTypes[index];
 		switch (type) {
-			case 'uint8':
-				return parseInt(input);
 			case 'uint256':
-				return parseInt(input);
+				if (tokenType === 'ERC20') {
+					return quais.utils.parseUnits(input.trim());
+				} else {
+					return parseInt(input);
+				}
 			case 'address':
-				return input;
+				return input.trim();
 			default:
-				return input;
+				return input.trim();
 		}
 	});
-	const methodVisibility = methodAbi?.stateMutability;
-
 	return { parsedInputs, methodVisibility };
 };

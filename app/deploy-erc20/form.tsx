@@ -1,9 +1,12 @@
 import { FormControl, FormErrorMessage, FormHelperText, FormLabel, Input, NumberInput, NumberInputField, Text } from '@chakra-ui/react';
 
-const Form = ({ isError, formState, setFormState }: ERC20FormProps) => {
+const Form = ({ isError, formState, setFormState, account }: ERC20FormProps) => {
 	return (
 		<>
-			<FormControl isInvalid={isError.error && isError.type === 'name'}>
+			<FormControl
+				isInvalid={isError.error && isError.type === 'name'}
+				isDisabled={!account}
+			>
 				<FormLabel>Token Name:</FormLabel>
 				<Input
 					type='text'
@@ -23,7 +26,10 @@ const Form = ({ isError, formState, setFormState }: ERC20FormProps) => {
 					</FormHelperText>
 				)}
 			</FormControl>
-			<FormControl isInvalid={isError.error && isError.type === 'symbol'}>
+			<FormControl
+				isInvalid={isError.error && isError.type === 'symbol'}
+				isDisabled={!account}
+			>
 				<FormLabel>Token Symbol:</FormLabel>
 				<Input
 					type='text'
@@ -43,7 +49,10 @@ const Form = ({ isError, formState, setFormState }: ERC20FormProps) => {
 					</FormHelperText>
 				)}
 			</FormControl>
-			<FormControl isInvalid={isError.error && isError.type === 'supply'}>
+			<FormControl
+				isInvalid={isError.error && isError.type === 'supply'}
+				isDisabled={!account}
+			>
 				<FormLabel>Token Supply:</FormLabel>
 				<NumberInput>
 					<NumberInputField
