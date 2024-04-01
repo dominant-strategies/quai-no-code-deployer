@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Live Frontend
 
-This application is currently hosted at [VERCEL DOMAIN]. 
+This application is currently hosted at [VERCEL DOMAIN].
 
 ## Running your Own Frontend
 
@@ -30,4 +30,4 @@ Finally, run the development server:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result and interact with the frontend. 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result and interact with the frontend.

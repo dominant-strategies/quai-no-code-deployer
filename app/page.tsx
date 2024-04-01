@@ -3,15 +3,12 @@ import HomeContent from './home/content';
 import { Center, Text } from '@chakra-ui/react';
 
 export default function Home() {
-	return (
-		<BaseLayout>
-			<Center
-				pt={{ base: 2, md: 10 }}
-				textAlign='center'
-			>
-				<Text variant='display'>Quai NoCode Deployer</Text>
-			</Center>
-			<HomeContent />
-		</BaseLayout>
-	);
+  return (
+    <BaseLayout>
+      <Center pt={{ base: 2, md: 10 }} textAlign="center">
+        <Text variant="display">Quai NoCode Deployer</Text>
+      </Center>
+      <HomeContent />
+    </BaseLayout>
+  );
 }
