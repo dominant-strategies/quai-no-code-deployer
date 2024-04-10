@@ -93,11 +93,11 @@ const DeployERC20 = () => {
           <VStack align="flex-start">
             <Text variant="h3">The ERC20 Contract</Text>
             <Text variant="p2">
-              The Quai Token deployer is configured to deploy the
-              <strong>{`base implementation of Open Zeppelin's ERC20 standard`}</strong>
-              `expanded with a Ownable modifier contract. Deploying the contract will create a new single-chain token
-              with the specified name, symbol, and supply. You, as the owner, will be minted the entirety of the token
-              supply, and will be able to mint new tokens and transfer ownership of the token contract.
+              The Quai Token deployer is configured to deploy the{' '}
+              <strong>{`base implementation of Open Zeppelin's ERC20 standard`}</strong> expanded with a Ownable
+              modifier contract. Deploying the contract will create a new single-chain token with the specified name,
+              symbol, and supply. You, as the owner, will be minted the entirety of the token supply, and will be able
+              to mint new tokens and transfer ownership of the token contract.
             </Text>
             <Text variant="p2">
               While the contract below is useful for simple deployments, it lacks customizability. If your token

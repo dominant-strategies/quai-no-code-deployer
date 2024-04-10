@@ -1,6 +1,14 @@
 import { quais } from 'quais';
 import ERC20 from '@/components/lib/contracts/erc20/ERC20.json';
-import ERC721 from '@/components/lib/contracts/erc721/ERC721.json';
+import ERC721 from '@/components/lib/contracts/erc721/JsonURI/ERC721.json';
+
+export const setColorModeLight = () => {
+  if (typeof window === 'undefined') return;
+  const colorMode = localStorage.getItem('chakra-ui-color-mode');
+  if (colorMode === 'dark') {
+    localStorage.setItem('chakra-ui-color-mode', 'light');
+  }
+};
 
 // ---- formatting ---- //
 export const shortenAddress = (address: string) => {
@@ -52,18 +60,6 @@ export const dispatchAccount = (accounts: Array<string> | undefined, dispatch: a
     dispatch({ type: 'SET_RPC_PROVIDER', payload: undefined });
     dispatch({ type: 'SET_ACCOUNT', payload: undefined });
   }
-};
-
-// ---- toast ---- //
-export const toastConfig = {
-  position: 'top-center',
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-  theme: 'dark',
 };
 
 // ---- data validation ---- //

@@ -13,7 +13,7 @@ export default function Interact() {
       <Flex pb={16} direction="column" gap={3} align="center">
         <Text variant="p1">Interact with your deployed tokens.</Text>
         <VStack align="flex-start" spacing={2} w="100%">
-          <Text size="md" fontWeight="600" w="fit-content">
+          <Text variant="p1" fontWeight="600" w="fit-content">
             Contract Type
           </Text>
           <Select

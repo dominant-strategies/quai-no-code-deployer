@@ -5,9 +5,7 @@ const sampleCode = `async function deployERC20() {
   const ERC20 = new quais.ContractFactory(ERC20Json.abi, ERC20Json.bytecode, wallet)
 
   // Broadcast deploy transaction
-  const erc20 = await ERC20.deploy(...tokenArgs, {
-    gasLimit: 5000000,
-  })
+  const erc20 = await ERC20.deploy(...tokenArgs, { gasLimit: 5000000 })
   console.log('Deploy tx hash: ' + erc20.deployTransaction.hash)
 
   // Wait for contract to be deployed (using quais-polling)
