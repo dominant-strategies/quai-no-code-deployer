@@ -79,6 +79,7 @@ declare global {
   interface ERC721FormStateProps {
     name: string;
     symbol: string;
+    extension: string;
     uri: string;
     collectionSize: string;
   }
@@ -99,6 +100,7 @@ declare global {
   interface DeployERC721Props {
     name: string;
     symbol: string;
+    extension: string;
     uri: string;
     collectionSize: string;
     web3Provider: any;

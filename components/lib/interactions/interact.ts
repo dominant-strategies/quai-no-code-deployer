@@ -1,7 +1,7 @@
 import { quais } from 'quais';
 import { pollFor } from 'quais-polling';
 import ERC20 from '../contracts/erc20/ERC20.json';
-import ERC721 from '../contracts/erc721/ERC721.json';
+import ERC721 from '../contracts/erc721/JsonURI/ERC721.json';
 
 /*
  * This function is used to call a method on an ERC20 contract

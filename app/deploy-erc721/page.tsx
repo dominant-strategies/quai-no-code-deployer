@@ -8,7 +8,7 @@ import Form from './form';
 import { deployNFT } from '@/components/lib/interactions/deploy';
 import { StateContext } from '@/store';
 import { buildTransactionUrl } from '@/components/lib/utils';
-import ERC721 from '@/components/lib/contracts/erc721/ERC721';
+import ERC721 from '@/components/lib/contracts/erc721/JsonURI/ERC721';
 
 const DeployERC721 = () => {
   const toast = useToast();
@@ -21,6 +21,7 @@ const DeployERC721 = () => {
   const [formState, setFormState] = useState<ERC721FormStateProps>({
     name: '',
     symbol: '',
+    extension: 'with-json',
     uri: '',
     collectionSize: '',
   });
@@ -28,6 +29,7 @@ const DeployERC721 = () => {
   const handleSubmit = () => {
     const name = formState.name;
     const symbol = formState.symbol;
+    const extension = formState.extension;
     const uri = formState.uri;
     const collectionSize = formState.collectionSize;
     if (!name) {
@@ -47,7 +49,7 @@ const DeployERC721 = () => {
       return;
     }
     setIsError({ error: false, message: '', type: '' });
-    toast.promise(deployNFT({ name, symbol, uri, collectionSize, web3Provider, rpcProvider }), {
+    toast.promise(deployNFT({ name, symbol, extension, uri, collectionSize, web3Provider, rpcProvider }), {
       loading: {
         title: `Deploying ${name} with collection size: ${collectionSize}.`,
         description: '',

@@ -4,9 +4,10 @@ import { useContext, useState } from 'react';
 import { assignTypesToArgs, buildTransactionUrl, validateAddress } from '@/components/lib/utils';
 import { callERC721ContractMethod } from '@/components/lib/interactions/interact';
 import { Flex, Text, Input, useToast, VStack } from '@chakra-ui/react';
-import ERC721 from '@/components/lib/contracts/erc721/ERC721.json';
+import ERC721 from '@/components/lib/contracts/erc721/JsonURI/ERC721.json';
 import { Button } from '@/components/ui';
 import { StateContext } from '@/store';
+import { NoInputButton, InputButton } from './Buttons';
 
 const ERC721Interact = () => {
   const toast = useToast();
@@ -82,54 +83,65 @@ const ERC721Interact = () => {
   };
 
   return (
-    <Flex direction="column" gap={4} width={{ base: '400px', md: '600px' }}>
+    <Flex direction="column" gap={4} width={{ base: '90vw', md: '700px' }}>
       <VStack align="flex-start" pb="25px">
-        <Text size="md" fontWeight="600" w="fit-content">
+        <Text variant="p1" fontWeight="600" w="fit-content">
           Contract Address
         </Text>
         <Input
           placeholder="0x..."
           onChange={e => setContractAddress(e.target.value)}
           border="1px solid black"
-          _placeholder={{ color: 'black' }}
+          _placeholder={{ opacity: 0.5, color: 'black' }}
           _hover={{ border: '1px solid black' }}
         />
       </VStack>
-      {ERC721.abi.map((abi: any, index: any) => {
-        if (abi.type === 'function' && abi.inputs.length !== 0) {
-          return (
-            <Flex key={index}>
-              <Button variant="primary" size="" px={5} borderRightRadius={0} onClick={() => handleInteract(abi.name)}>
-                {abi.name}
-              </Button>
-              <Input
-                placeholder={abi.inputs.map((input: any) => input.type + ' ' + input.name).join(', ')}
-                borderLeftRadius={0}
-                onChange={event => handleInputChange(event, abi.name)}
-                border="1px solid black"
-                _placeholder={{ color: 'black' }}
-                _hover={{ border: '1px solid black' }}
-              />
-            </Flex>
-          );
-        }
-      })}
-      {ERC721.abi.map((abi: any) => {
-        if (abi.type === 'function' && abi.inputs.length === 0) {
-          return (
-            <Button
-              key={abi.name}
-              variant="secondary"
-              size="md"
-              h="2.5rem"
-              width="fit-content"
-              onClick={() => handleInteract(abi.name)}
-            >
-              {abi.name}
-            </Button>
-          );
-        }
-      })}
+      <Flex direction="column" gap={4} w="100%">
+        <Text variant="p1" fontWeight="600" w="fit-content">
+          State Methods
+        </Text>
+        {ERC721.abi.map((abi: any, index: any) => {
+          if (abi.type === 'function' && abi.stateMutability === 'nonpayable') {
+            if (abi.inputs.length === 0) {
+              return <NoInputButton key={index} abi={abi} handleInteract={handleInteract} color="brand.800" />;
+            } else {
+              return (
+                <InputButton
+                  key={index}
+                  abi={abi}
+                  handleInteract={handleInteract}
+                  handleInputChange={handleInputChange}
+                  color="brand.800"
+                  tokenType="ERC721"
+                />
+              );
+            }
+          }
+        })}
+      </Flex>
+      <Flex direction="column" gap={4} w="100%" pt={4}>
+        <Text variant="p1" fontWeight="600" w="fit-content">
+          View-Only Methods
+        </Text>
+        {ERC721.abi.map((abi: any, index: any) => {
+          if (abi.type === 'function' && (abi.stateMutability === 'pure' || abi.stateMutability === 'view')) {
+            if (abi.inputs.length === 0) {
+              return <NoInputButton key={index} abi={abi} handleInteract={handleInteract} color="brand.300" />;
+            } else {
+              return (
+                <InputButton
+                  key={index}
+                  abi={abi}
+                  handleInteract={handleInteract}
+                  handleInputChange={handleInputChange}
+                  color="brand.300"
+                  tokenType="ERC721"
+                />
+              );
+            }
+          }
+        })}
+      </Flex>
     </Flex>
   );
 };

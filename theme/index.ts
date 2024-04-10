@@ -11,7 +11,7 @@ import styles from './styles';
 
 // set base theme config
 const config: ThemeConfig = {
-  initialColorMode: 'dark',
+  initialColorMode: 'light',
   useSystemColorMode: false,
 };
 
