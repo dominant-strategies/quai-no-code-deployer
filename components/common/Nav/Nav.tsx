@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Flex, HStack, Grid, useDisclosure, Avatar } from '@chakra-ui/react';
+import { Flex, HStack, Grid, useDisclosure, Image } from '@chakra-ui/react';
 import { usePathname } from 'next/navigation';
 import { useGetAccounts } from '@/components/lib/wallet';
 import { usePage } from '@/components/lib/pageProvider';
@@ -50,7 +50,7 @@ const Nav = () => {
       gridTemplateColumns={{ base: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
     >
       <Flex align="center" justify="flex-start">
-        <Avatar src="/quai-logo.png" width={35} height={35} />
+        <Image src="/quai-logo.png" width="auto" height={10} alt="Quai Network Logo" />
       </Flex>
 
       <HStack spacing="15px" justify="center" display={{ base: 'none', lg: 'flex' }}>
