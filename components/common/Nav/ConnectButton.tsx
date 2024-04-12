@@ -14,8 +14,22 @@ const ConnectButton = () => {
     requestAccounts(dispatch, web3Provider);
   };
 
-  return (
-    <Flex>
+  if (!web3Provider) {
+    return (
+      <Flex>
+        <Flex align="center" justify="flex-end" gap="34px">
+          <Button
+            variant="primary"
+            size="md"
+            href="https://chromewebstore.google.com/detail/pelagus/gaegollnpijhedifeeeepdoffkgfcmbc"
+          >
+            Install Pelagus Wallet
+          </Button>
+        </Flex>
+      </Flex>
+    );
+  } else {
+    return (
       <Flex align="center" justify="flex-end" gap="34px">
         <Button
           variant="primary"
@@ -42,8 +56,8 @@ const ConnectButton = () => {
           )}
         </Button>
       </Flex>
-    </Flex>
-  );
+    );
+  }
 };
 
 export default ConnectButton;
