@@ -5,6 +5,10 @@ import { dispatchAccount } from '../utils';
 // gets user accounts and provider if user connects their wallet
 
 const requestAccounts = async (dispatch: any, web3provider: any) => {
+  if (!web3provider) {
+    console.log('No pelagus provider found.');
+    return;
+  }
   await web3provider
     .send('quai_requestAccounts')
     .then((accounts: Array<string>) => {
