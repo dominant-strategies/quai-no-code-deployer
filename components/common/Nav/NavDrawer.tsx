@@ -9,12 +9,12 @@ const NavDrawer = ({ isOpen, onOpen, onClose, NavButtonContent }: any) => {
 
   return (
     <>
-      <Button onClick={onOpen} display={{ base: 'flex', lg: 'none' }} size="xs" variant="iconLight">
-        <GiHamburgerMenu size={24} />
+      <Button onClick={onOpen} display={{ base: 'flex', lg: 'none' }} size="md" variant="phantom">
+        <GiHamburgerMenu size={16} />
       </Button>
       <Drawer onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay display={{ base: 'block', lg: 'none' }} />
-        <DrawerContent display={{ base: 'block', lg: 'none' }} bg="white">
+        <DrawerContent display={{ base: 'block', lg: 'none' }}>
           <DrawerBody h="100%">
             <VStack spacing="20px" py={5}>
               <ConnectButton />
@@ -24,6 +24,7 @@ const NavDrawer = ({ isOpen, onOpen, onClose, NavButtonContent }: any) => {
                     key={key}
                     variant="phantom"
                     size="md"
+                    w="180px"
                     href={item.link}
                     newTab={false}
                     isActive={activePage === item.link}

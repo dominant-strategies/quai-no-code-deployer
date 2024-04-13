@@ -1,73 +1,53 @@
 import { defineStyleConfig, defineStyle } from '@chakra-ui/styled-system';
 
-const primaryVariant = defineStyle(props => {
-  const { colorScheme: c } = props;
-  return {
-    bg: `${c}.700`,
+const primaryVariant = defineStyle({
+  bg: 'accents.solidPrimary',
+  color: 'white',
+  border: '1px solid',
+  borderColor: 'accents.borderSecondary',
+  _hover: {
+    bg: 'accents.borderTertiary',
+    borderColor: 'accents.borderPrimary',
+    _disabled: {
+      bg: 'accents.solidPrimary',
+    },
+  },
+});
+
+const secondaryVariant = defineStyle({
+  bg: 'accents.interactiveTertiary',
+  color: 'gray.textSecondary',
+  border: '1px solid',
+  borderColor: 'accents.borderSecondary',
+  _hover: {
+    bg: 'accents.interactiveSecondary',
+    borderColor: 'accents.borderPrimary',
+  },
+});
+
+const phantomVariant = defineStyle({
+  color: 'gray.textSecondary',
+  border: '1px solid',
+  borderColor: 'gray.borderPrimary',
+  bg: 'gray.backgroundSecondary',
+  _hover: {
+    bg: 'accents.interactiveTertiary',
+    borderColor: 'accents.borderPrimary',
+  },
+  _active: {
+    bg: 'accents.solidPrimary',
     color: 'white',
-    border: '1px solid',
-    borderColor: `${c}.700`,
-    _hover: {
-      bg: `${c}.800`,
-      borderColor: `${c}.100`,
-    },
-  };
+    borderColor: 'accents.backgroundPrimary',
+    boxShadow: '2px 1px 5px 1px rgba(255, 255, 255, 0.12)',
+  },
 });
 
-const secondaryVariant = defineStyle(props => {
-  const { colorScheme: c } = props;
-  return {
-    color: `${c}.50`,
-    border: '1px solid',
-    borderColor: `${c}.700`,
-    bg: `${c}.300`,
-    _hover: {
-      bg: `${c}.600`,
-      color: `${c}.50`,
-      borderColor: `${c}.800`,
-    },
-  };
-});
-
-const phantomVariant = defineStyle(props => {
-  const { colorScheme: c } = props;
-  return {
-    color: `${c}.900`,
-    border: '1px solid',
-    borderColor: `transparent`,
-    _hover: {
-      borderColor: `${c}.600`,
-      border: '1px solid',
-    },
-    _active: {
-      bg: `${c}.800`,
-      color: `${c}.50`,
-      borderColor: `${c}.600`,
-      border: '1px solid',
-    },
-  };
-});
-
-const linkVariant = defineStyle(props => {
-  const { colorScheme: c } = props;
-  return {
-    color: `${c}.900`,
-    _hover: {
-      color: `${c}.800`,
-      textDecoration: 'underline',
-    },
-  };
-});
-
-const flatVariant = defineStyle(props => {
-  const { colorScheme: c } = props;
-  return {
-    bg: `${c}.700`,
-    color: `${c}.50`,
-    _hover: {
-      color: `${c}.100`,
-    },
-  };
+const linkVariant = defineStyle({
+  color: 'gray.textSecondary',
+  _hover: {
+    color: 'gray.textPrimary',
+    textDecoration: 'underline',
+  },
 });
 
 const Button = defineStyleConfig({
@@ -76,13 +56,11 @@ const Button = defineStyleConfig({
     fontWeight: '400',
     fontFamily: 'var(--font-rubik)',
     _disabled: {
-      opacity: '0.8',
+      opacity: '0.7',
       cursor: 'not-allowed',
-      bg: 'gray.700',
     },
     _hover: {
       _disabled: {
-        background: 'black',
         cursor: 'not-allowed',
       },
     },
@@ -114,12 +92,10 @@ const Button = defineStyleConfig({
     secondary: secondaryVariant,
     phantom: phantomVariant,
     link: linkVariant,
-    flat: flatVariant,
   },
   defaultProps: {
     size: 'md',
     variant: 'primary',
-    colorScheme: 'brand',
   },
 });
 

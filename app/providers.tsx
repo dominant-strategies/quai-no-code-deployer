@@ -1,17 +1,21 @@
 'use client';
 import { theme } from '@/theme';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, ColorModeScript, Flex } from '@chakra-ui/react';
 import { StateProvider } from '@/store';
 import { PageProvider } from '@/components/lib/pageProvider';
-import { setColorModeLight } from '@/components/lib/utils';
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  setColorModeLight();
   return (
-    <ChakraProvider theme={theme}>
-      <StateProvider>
-        <PageProvider>{children}</PageProvider>
-      </StateProvider>
-    </ChakraProvider>
+    <>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <ChakraProvider theme={theme}>
+        <StateProvider>
+          <PageProvider>
+            <Flex position="absolute" left={0} right={0} opacity={0.6} h="480px" background="gradients.background" />
+            {children}
+          </PageProvider>
+        </StateProvider>
+      </ChakraProvider>
+    </>
   );
 }

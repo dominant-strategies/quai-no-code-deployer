@@ -3,6 +3,8 @@ import { ThemeConfig, extendTheme } from '@chakra-ui/react';
 // import custom components
 import components from './components';
 
+import semanticTokens from './semanticTokens';
+
 // import colors, typography, etc.
 import foundations from './foundations';
 
@@ -16,6 +18,7 @@ const config: ThemeConfig = {
 };
 
 const overrides = {
+  semanticTokens,
   config,
   styles,
   ...foundations,

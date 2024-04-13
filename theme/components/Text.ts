@@ -2,7 +2,6 @@ import { defineStyleConfig } from '@chakra-ui/styled-system';
 
 const Text = defineStyleConfig({
   baseStyle: {
-    color: 'brand.900',
     fontSize: 'sm',
     fontWeight: 'light',
     fontFamily: 'var(--font-rubik)',

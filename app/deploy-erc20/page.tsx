@@ -55,12 +55,13 @@ const DeployERC20 = () => {
               variant="link"
               href={buildTransactionUrl(account!.shard.rpcName, erc20.deployTransaction.hash)}
               newTab={true}
-              color="white"
               fontWeight="600"
+              color="background.secondary"
+              textDecoration="underline"
             >
               View In Explorer
             </Button>
-            <Text variant="p2" color="white">
+            <Text variant="p2" color="background.secondary">
               Contract Address: {txReceipt.contractAddress}
             </Text>
           </Flex>

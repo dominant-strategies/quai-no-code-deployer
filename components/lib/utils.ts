@@ -2,14 +2,6 @@ import { quais } from 'quais';
 import ERC20 from '@/components/lib/contracts/erc20/ERC20.json';
 import ERC721 from '@/components/lib/contracts/erc721/JsonURI/ERC721.json';
 
-export const setColorModeLight = () => {
-  if (typeof window === 'undefined') return;
-  const colorMode = localStorage.getItem('chakra-ui-color-mode');
-  if (colorMode === 'dark') {
-    localStorage.setItem('chakra-ui-color-mode', 'light');
-  }
-};
-
 // ---- formatting ---- //
 export const shortenAddress = (address: string) => {
   if (address === '') return '';

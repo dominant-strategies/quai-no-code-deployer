@@ -1,11 +1,10 @@
 import { Button } from '@/components/ui';
 
-const NoInputButton = ({ handleInteract, abi, color }: { handleInteract: any; abi: any; color: string }) => {
+const NoInputButton = ({ handleInteract, abi }: { handleInteract: any; abi: any }) => {
   return (
     <Button
       key={abi.name}
       variant="secondary"
-      bg={color}
       size="md"
       h="2.5rem"
       w={{ base: '130px', md: '200px' }}
