@@ -9,18 +9,18 @@ import {
   Text,
 } from '@chakra-ui/react';
 
-const Form = ({ isError, formState, setFormState, account }: ERC20FormProps) => {
+const Form = ({ isError, formState, setFormState }: ERC20FormProps) => {
   return (
     <>
-      <FormControl isInvalid={isError.error && isError.type === 'name'} isDisabled={!account}>
+      <FormControl isInvalid={isError.error && isError.type === 'name'}>
         <FormLabel>Token Name</FormLabel>
         <Input
           type="text"
           value={formState.name}
           onChange={e => setFormState({ ...formState, name: e.target.value })}
-          border="1px solid black"
-          _hover={{ border: '1px solid black' }}
-          _placeholder={{ opacity: 0.5 }}
+          border="1px solid"
+          borderColor="gray.borderSecondary"
+          _placeholder={{ opacity: 0.8 }}
           placeholder="MyToken"
         />
         {isError.error && isError.type === 'name' ? (
@@ -33,15 +33,15 @@ const Form = ({ isError, formState, setFormState, account }: ERC20FormProps) => 
           </FormHelperText>
         )}
       </FormControl>
-      <FormControl isInvalid={isError.error && isError.type === 'symbol'} isDisabled={!account}>
+      <FormControl isInvalid={isError.error && isError.type === 'symbol'}>
         <FormLabel>Token Symbol</FormLabel>
         <Input
           type="text"
           value={formState.symbol}
           onChange={e => setFormState({ ...formState, symbol: e.target.value })}
-          border="1px solid black"
-          _hover={{ border: '1px solid black' }}
-          _placeholder={{ opacity: 0.5 }}
+          border="1px solid"
+          borderColor="gray.borderSecondary"
+          _placeholder={{ opacity: 0.8 }}
           placeholder="MTK"
         />
         {isError.error && isError.type === 'symbol' ? (
@@ -54,15 +54,15 @@ const Form = ({ isError, formState, setFormState, account }: ERC20FormProps) => 
           </FormHelperText>
         )}
       </FormControl>
-      <FormControl isInvalid={isError.error && isError.type === 'supply'} isDisabled={!account}>
+      <FormControl isInvalid={isError.error && isError.type === 'supply'}>
         <FormLabel>Token Supply</FormLabel>
         <NumberInput>
           <NumberInputField
             value={formState.supply}
             onChange={e => setFormState({ ...formState, supply: e.target.value })}
-            border="1px solid black"
-            _hover={{ border: '1px solid black' }}
-            _placeholder={{ opacity: 0.5 }}
+            border="1px solid"
+            borderColor="gray.borderSecondary"
+            _placeholder={{ opacity: 0.8 }}
             placeholder="1000000000"
           />
           {isError.error && isError.type === 'supply' ? (

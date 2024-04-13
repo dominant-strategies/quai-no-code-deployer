@@ -1,11 +1,8 @@
-import { color } from 'framer-motion';
-
 const styles = {
   global: {
     body: {
-      backgroundColor: '#FAF9F6',
-      textColor: 'black',
-      color: 'black',
+      background: 'accents.backgroundPrimary',
+      textColor: 'gray.textSecondary',
       fontWeight: '300',
       padding: '0',
       margin: '0',

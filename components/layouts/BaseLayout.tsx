@@ -3,7 +3,7 @@ import { Container, Text } from '@chakra-ui/react';
 
 const BaseLayout: FC<BaseLayoutProps> = ({ children, heading }) => {
   return (
-    <Container py="100px" centerContent maxW="4xl">
+    <Container py="100px" centerContent maxW="4xl" minH="100vh">
       <Text fontSize="2xl" fontWeight="bold" mb="20px">
         {heading}
       </Text>

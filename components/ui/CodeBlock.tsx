@@ -1,6 +1,6 @@
 'use client';
 
-import { Flex, Icon, Box, Text } from '@chakra-ui/react';
+import { Flex, Icon, Box, Text, useColorMode } from '@chakra-ui/react';
 import { SiSolidity, SiJavascript } from 'react-icons/si';
 import { Highlight } from 'prism-react-renderer';
 import Prism from 'prismjs';
@@ -17,13 +17,15 @@ const languages: CodingLanguage = {
 };
 
 const CodeBlock = ({ fileName, language, children }: CodeBlockProps) => {
+  const { colorMode } = useColorMode();
   return (
     <Flex
       direction="column"
       overflow="hidden"
-      border="1px solid gray"
+      border="1px solid"
+      borderColor="gray.borderPrimary"
       borderRadius="16px"
-      boxShadow={'0 6px 10px 0 rgba(0, 0, 0, 0.4)'}
+      boxShadow={colorMode === 'light' ? '0 6px 10px 0 rgba(0, 0, 0, 0.4)' : '2px 4px 10px 0 rgba(255, 255, 255, 0.08)'}
     >
       <Flex
         flexGrow="initial"
@@ -31,7 +33,8 @@ const CodeBlock = ({ fileName, language, children }: CodeBlockProps) => {
         justify="space-between"
         bg="#21262d"
         py="10px"
-        borderBottom="1px solid gray"
+        borderBottom="1px solid"
+        borderColor="gray.borderPrimary"
       >
         <Flex color="gray.100" pl="1rem" gap="8px" align="center">
           <Icon w="18px" h="18px" as={languages[language].icon} color={languages[language].color} />

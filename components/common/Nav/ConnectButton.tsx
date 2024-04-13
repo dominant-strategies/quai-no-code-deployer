@@ -31,21 +31,7 @@ const ConnectButton = () => {
   } else {
     return (
       <Flex align="center" justify="flex-end" gap="34px">
-        <Button
-          variant="primary"
-          size="md"
-          onClick={connectHandler}
-          disabled={!!account}
-          w="fit-content"
-          _hover={{
-            _disabled: {
-              background: 'white',
-            },
-          }}
-          _disabled={{
-            background: 'white',
-          }}
-        >
+        <Button variant="primary" size="md" onClick={connectHandler} disabled={!!account} w="fit-content">
           {account ? (
             <Flex gap="10px">
               <Text variant="p2-bold">{account.shard.name}</Text>

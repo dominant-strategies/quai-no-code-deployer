@@ -7,13 +7,11 @@ const NoInputButton = ({
   handleInteract,
   handleInputChange,
   abi,
-  color,
   tokenType,
 }: {
   handleInteract: any;
   handleInputChange: any;
   abi: any;
-  color: string;
   tokenType: 'ERC20' | 'ERC721';
 }) => {
   let ToolTipContent;
@@ -25,13 +23,12 @@ const NoInputButton = ({
   return (
     <Flex key={abi.name} fontSize={{ base: '12px', md: '16px' }}>
       <Button
-        variant="secondary"
+        variant="primary"
         size=""
         px={3}
         borderRightRadius={0}
         onClick={() => handleInteract(abi.name)}
         minW={{ base: '130px', md: '200px' }}
-        bg={color}
       >
         {abi.name}
       </Button>
@@ -40,9 +37,10 @@ const NoInputButton = ({
           placeholder={abi.inputs.map((input: any) => input.type + ' ' + input.name).join(', ')}
           borderLeftRadius={0}
           onChange={event => handleInputChange(event, abi.name)}
-          border="1px solid black"
-          _placeholder={{ opacity: 0.5, color: 'black' }}
-          _hover={{ border: '1px solid black' }}
+          border="1px solid"
+          borderColor="gray.borderSecondary"
+          bg="accents.backgroundSecondary"
+          _placeholder={{ opacity: 0.8 }}
           fontSize={{ base: '12px', md: '16px' }}
         />
         <InputRightElement>

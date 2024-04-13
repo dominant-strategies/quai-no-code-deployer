@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Flex, Text, VStack, useToast } from '@chakra-ui/react';
 import BaseLayout from '@/components/layouts/BaseLayout';
 import { Button, CodeBlock } from '@/components/ui';
@@ -25,6 +25,10 @@ const DeployERC721 = () => {
     uri: '',
     collectionSize: '',
   });
+
+  useEffect(() => {
+    setIsError({ error: false, message: '', type: '' });
+  }, [account]);
 
   const handleSubmit = () => {
     const name = formState.name;
@@ -63,12 +67,13 @@ const DeployERC721 = () => {
               variant="link"
               href={buildTransactionUrl(account!.shard.rpcName, erc721.deployTransaction.hash)}
               newTab={true}
-              color="white"
               fontWeight="600"
+              textDecoration="underline"
+              color="background.secondary"
             >
               View In Explorer
             </Button>
-            <Text variant="p2" color="white">
+            <Text variant="p2" color="background.secondary">
               Contract Address: {txReceipt.contractAddress}
             </Text>
           </Flex>

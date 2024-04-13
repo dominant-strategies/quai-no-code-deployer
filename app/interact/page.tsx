@@ -19,9 +19,9 @@ export default function Interact() {
           <Select
             value={contract}
             onChange={e => setContract(e.target.value as 'ERC20' | 'ERC721')}
-            border="1px solid black"
-            _placeholder={{ color: 'black' }}
-            _hover={{ border: '1px solid black' }}
+            border="1px solid"
+            borderColor="gray.borderSecondary"
+            _placeholder={{ opacity: 0.8 }}
           >
             <option value="ERC20">Token Interactor</option>
             <option value="ERC721">NFT Interactor</option>

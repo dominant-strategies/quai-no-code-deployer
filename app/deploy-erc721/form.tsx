@@ -13,18 +13,18 @@ import {
 import { InformationHover } from '@/components/common';
 import { MetadataExtensionContent, MetadataURIContent } from './tooltipContent';
 
-const Form = ({ isError, formState, setFormState, account }: ERC721FormProps) => {
+const Form = ({ isError, formState, setFormState }: ERC721FormProps) => {
   return (
     <>
-      <FormControl isInvalid={isError.error && isError.type === 'name'} isDisabled={!account}>
+      <FormControl isInvalid={isError.error && isError.type === 'name'}>
         <FormLabel>Collection Name</FormLabel>
         <Input
           type="text"
           value={formState.name}
           onChange={e => setFormState({ ...formState, name: e.target.value })}
-          border="1px solid black"
-          _hover={{ border: '1px solid black' }}
-          _placeholder={{ opacity: 0.5 }}
+          border="1px solid"
+          borderColor="gray.borderSecondary"
+          _placeholder={{ opacity: 0.8 }}
           placeholder="MyCollection"
         />
         {isError.error && isError.type === 'name' ? (
@@ -37,15 +37,15 @@ const Form = ({ isError, formState, setFormState, account }: ERC721FormProps) =>
           </FormHelperText>
         )}
       </FormControl>
-      <FormControl isInvalid={isError.error && isError.type === 'symbol'} isDisabled={!account}>
+      <FormControl isInvalid={isError.error && isError.type === 'symbol'}>
         <FormLabel>Collection Symbol</FormLabel>
         <Input
           type="text"
           value={formState.symbol}
           onChange={e => setFormState({ ...formState, symbol: e.target.value })}
-          border="1px solid black"
-          _hover={{ border: '1px solid black' }}
-          _placeholder={{ opacity: 0.5 }}
+          border="1px solid"
+          borderColor="gray.borderSecondary"
+          _placeholder={{ opacity: 0.8 }}
           placeholder="MCL"
         />
         {isError.error && isError.type === 'symbol' ? (
@@ -58,7 +58,7 @@ const Form = ({ isError, formState, setFormState, account }: ERC721FormProps) =>
           </FormHelperText>
         )}
       </FormControl>
-      <FormControl isDisabled={!account}>
+      <FormControl>
         <Flex align="center" gap="5px" pb="8px">
           <Text variant="p2-bold" letterSpacing="md">
             Metadata Extension
@@ -68,9 +68,9 @@ const Form = ({ isError, formState, setFormState, account }: ERC721FormProps) =>
         <Select
           value={formState.extension}
           onChange={e => setFormState({ ...formState, extension: e.target.value })}
-          border="1px solid black"
-          _placeholder={{ opacity: 0.5 }}
-          _hover={{ border: '1px solid black' }}
+          border="1px solid"
+          borderColor="gray.borderSecondary"
+          _placeholder={{ opacity: 0.8 }}
         >
           <option value="with-json">.json</option>
           <option value="without-json">none</option>
@@ -79,7 +79,7 @@ const Form = ({ isError, formState, setFormState, account }: ERC721FormProps) =>
           <Text>{`Enter the file extension type for your metadata.`}</Text>
         </FormHelperText>
       </FormControl>
-      <FormControl isInvalid={isError.error && isError.type === 'uri'} isDisabled={!account}>
+      <FormControl isInvalid={isError.error && isError.type === 'uri'}>
         <Flex align="center" gap="5px" pb="8px">
           <Text variant="p2-bold" letterSpacing="md">
             Metadata URI
@@ -90,9 +90,9 @@ const Form = ({ isError, formState, setFormState, account }: ERC721FormProps) =>
           type="text"
           value={formState.uri}
           onChange={e => setFormState({ ...formState, uri: e.target.value })}
-          border="1px solid black"
-          _hover={{ border: '1px solid black' }}
-          _placeholder={{ opacity: 0.5 }}
+          border="1px solid"
+          borderColor="gray.borderSecondary"
+          _placeholder={{ opacity: 0.8 }}
           placeholder="ipfs://mymetadatacid/"
         />
         {isError.error && isError.type === 'uri' ? (
@@ -105,15 +105,15 @@ const Form = ({ isError, formState, setFormState, account }: ERC721FormProps) =>
           </FormHelperText>
         )}
       </FormControl>
-      <FormControl isInvalid={isError.error && isError.type === 'collectionSize'} isDisabled={!account}>
+      <FormControl isInvalid={isError.error && isError.type === 'collectionSize'}>
         <FormLabel>Collection Size</FormLabel>
         <NumberInput>
           <NumberInputField
             value={formState.collectionSize}
             onChange={e => setFormState({ ...formState, collectionSize: e.target.value })}
-            border="1px solid black"
-            _hover={{ border: '1px solid black' }}
-            _placeholder={{ opacity: 0.5 }}
+            border="1px solid"
+            borderColor="gray.borderSecondary"
+            _placeholder={{ opacity: 0.8 }}
             placeholder="100"
           />
           {isError.error && isError.type === 'collectionSize' ? (
