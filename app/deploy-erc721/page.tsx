@@ -12,7 +12,7 @@ import ERC721 from '@/components/lib/contracts/erc721/JsonURI/ERC721';
 
 const DeployERC721 = () => {
   const toast = useToast();
-  const { rpcProvider, web3Provider, account } = useContext(StateContext);
+  const { web3Provider, account } = useContext(StateContext);
   const [isError, setIsError] = useState<{ error: boolean; message: string; type: string }>({
     error: false,
     message: '',
@@ -53,7 +53,7 @@ const DeployERC721 = () => {
       return;
     }
     setIsError({ error: false, message: '', type: '' });
-    toast.promise(deployNFT({ name, symbol, extension, uri, collectionSize, web3Provider, rpcProvider }), {
+    toast.promise(deployNFT({ name, symbol, extension, uri, collectionSize, web3Provider }), {
       loading: {
         title: `Deploying ${name} with collection size: ${collectionSize}.`,
         description: '',

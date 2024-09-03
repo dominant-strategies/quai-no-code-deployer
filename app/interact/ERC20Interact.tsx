@@ -30,7 +30,7 @@ const ERC20Interact = () => {
       setIsError({ error: false, message: '' });
       return;
     }
-    const contractShard = quais.utils.getShardFromAddress(e.target.value);
+    const contractShard = quais.getZoneForAddress(e.target.value);
     if (!contractShard) {
       setIsError({ error: true, message: 'Invalid contract address' });
       return;

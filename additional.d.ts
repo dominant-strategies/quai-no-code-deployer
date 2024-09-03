@@ -2,7 +2,7 @@ import { ExternalProvider } from 'quais';
 
 declare global {
   interface Window {
-    ethereum?: ExternalProvider;
+    pelagus?: ExternalProvider;
   }
   // ---- page + component props ---- //
 
@@ -95,7 +95,6 @@ declare global {
     symbol: string;
     supply: string;
     web3Provider: any;
-    rpcProvider: any;
   }
   interface DeployERC721Props {
     name: string;
@@ -104,6 +103,5 @@ declare global {
     uri: string;
     collectionSize: string;
     web3Provider: any;
-    rpcProvider: any;
   }
 }
