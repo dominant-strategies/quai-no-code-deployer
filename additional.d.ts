@@ -1,11 +1,11 @@
-import { ExternalProvider } from 'quais';
+import { AbstractProvider, Eip1193Provider } from 'quais';
 
 declare global {
   interface Window {
-    pelagus?: ExternalProvider;
+    pelagus?: Eip1193Provider & AbstractProvider;
   }
-  // ---- page + component props ---- //
 
+  // ---- page + component props ---- //
   interface PageContextType {
     activePage: string;
     setActivePage: (page: string) => void;
@@ -26,7 +26,6 @@ declare global {
     setFormState: Dispatch<SetStateAction<ERC20FormStateProps>>;
     account: account;
   }
-
   type CodeBlockProps = Omit<JSX.IntrinsicElements['pre'], 'children'> &
     CodeBlockVariantProps & {
       fileName: string;
