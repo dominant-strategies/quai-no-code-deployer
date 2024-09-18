@@ -15,7 +15,7 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.4",
     "framer-motion": "^11.0.6",
-    "next": "^14.2.5",
+    "next": "^14.2.10",
     "prism-react-renderer": "^2.3.1",
     "prismjs": "^1.29.0",
     "quais": "^1.0.0-alpha.9",
