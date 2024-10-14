@@ -5,7 +5,8 @@ import ERC721URI from '../contracts/erc721/URI/ERC721.json';
 
 export const deployToken = async ({ name, symbol, supply, web3Provider }: DeployERC20Props) => {
   try {
-    const ERC20contract = new quais.ContractFactory(ERC20.abi, ERC20.bytecode, await web3Provider.getSigner());
+    const signer = await web3Provider.getSigner();
+    const ERC20contract = new quais.ContractFactory(ERC20.abi, ERC20.bytecode, signer);
     console.log('Deploying ERC20 token...', ERC20contract);
     const erc20 = await ERC20contract.deploy(name, symbol, quais.parseUnits(supply));
     console.log('Token deploy transaction: ', erc20.deploymentTransaction);
@@ -28,7 +29,8 @@ export const deployNFT = async ({ name, symbol, extension, uri, collectionSize, 
     ABI = ERC721JsonURI;
   }
   try {
-    const ERC721contract = new quais.ContractFactory(ABI.abi, ABI.bytecode, web3Provider.getSigner());
+    const signer = await web3Provider.getSigner();
+    const ERC721contract = new quais.ContractFactory(ABI.abi, ABI.bytecode, signer);
     const erc721 = await ERC721contract.deploy(name, symbol, uri, collectionSize, { gasLimit: 5000000 });
     await erc721.waitForDeployment();
     const deploymentTx = erc721.deploymentTransaction;

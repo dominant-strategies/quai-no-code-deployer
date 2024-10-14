@@ -10,31 +10,23 @@ export const shortenAddress = (address: string) => {
 
 export const sortedQuaiShardNames: ShardNames = {
   '0x00': { name: 'Cyprus-1', rpcName: 'cyprus1' },
-  '0x01': { name: 'Cyprus-2', rpcName: 'cyprus2' },
-  '0x02': { name: 'Cyprus-3', rpcName: 'cyprus3' },
-  '0x10': { name: 'Paxos-1', rpcName: 'paxos1' },
-  '0x11': { name: 'Paxos-2', rpcName: 'paxos2' },
-  '0x12': { name: 'Paxos-3', rpcName: 'paxos3' },
-  '0x20': { name: 'Hydra-1', rpcName: 'hydra1' },
-  '0x21': { name: 'Hydra-2', rpcName: 'hydra2' },
-  '0x22': { name: 'Hydra-3', rpcName: 'hydra3' },
 };
 
 // ---- explorer url builders ---- //
 export const buildRpcUrl = () => {
-  return `http://rpc.sandbox.quai.network`;
+  return `http://rpc.orchard.quai.network`;
 };
 
-export const buildExplorerUrl = (shardName: string) => {
-  return `https://${shardName}.colosseum.quaiscan.io`;
+export const buildExplorerUrl = () => {
+  return `https://quaiscan.io`;
 };
 
-export const buildAddressUrl = (shardName: string, address: string) => {
-  return `https://${shardName}.colosseum.quaiscan.io/address/${address}`;
+export const buildAddressUrl = (address: string) => {
+  return `https://quaiscan.io/address/${address}`;
 };
 
-export const buildTransactionUrl = (shardName: string, txHash: string) => {
-  return `https://${shardName}.colosseum.quaiscan.io/tx/${txHash}`;
+export const buildTransactionUrl = (txHash: string) => {
+  return `https://quaiscan.io/tx/${txHash}`;
 };
 
 // ---- dispatchers ---- //

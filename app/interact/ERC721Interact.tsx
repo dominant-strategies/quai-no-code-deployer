@@ -77,7 +77,7 @@ const ERC721Interact = () => {
               {txData?.transactionHash ? (
                 <Button
                   variant="link"
-                  href={buildTransactionUrl(account!.shard.rpcName, txData.transactionHash)}
+                  href={buildTransactionUrl(txData.transactionHash)}
                   newTab={true}
                   color="background.secondary"
                   fontWeight="600"
