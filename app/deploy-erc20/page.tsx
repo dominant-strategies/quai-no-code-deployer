@@ -12,7 +12,7 @@ import ERC20 from '@/components/lib/contracts/erc20/ERC20';
 
 const DeployERC20 = () => {
   const toast = useToast();
-  const { rpcProvider, web3Provider, account } = useContext(StateContext);
+  const { web3Provider, account } = useContext(StateContext);
   const [isError, setIsError] = useState<{ error: boolean; message: string; type: string }>({
     error: false,
     message: '',
@@ -41,7 +41,7 @@ const DeployERC20 = () => {
       return;
     }
     setIsError({ error: false, message: '', type: '' });
-    toast.promise(deployToken({ name, symbol, supply, web3Provider, rpcProvider }), {
+    toast.promise(deployToken({ name, symbol, supply, web3Provider }), {
       loading: {
         title: `Deploying ${name} with initial supply ${supply}.`,
         description: '',
@@ -53,7 +53,7 @@ const DeployERC20 = () => {
           <Flex direction="column">
             <Button
               variant="link"
-              href={buildTransactionUrl(account!.shard.rpcName, erc20.deployTransaction.hash)}
+              href={buildTransactionUrl(erc20.deployTransaction.hash)}
               newTab={true}
               fontWeight="600"
               color="background.secondary"

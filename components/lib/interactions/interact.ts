@@ -1,5 +1,4 @@
 import { quais } from 'quais';
-import { pollFor } from 'quais-polling';
 import ERC20 from '../contracts/erc20/ERC20.json';
 import ERC721 from '../contracts/erc721/JsonURI/ERC721.json';
 
@@ -27,17 +26,22 @@ export const callERC20ContractMethod = async (
   viewOnly: boolean | undefined
 ) => {
   try {
-    const ERC20contract = new quais.Contract(contractAddress, ERC20.abi, web3Provider.getSigner());
+    const ERC20contract = new quais.Contract(contractAddress, ERC20.abi, await web3Provider.getSigner());
+    console.log(ERC20contract);
     if (viewOnly === true) {
-      let erc20 = await ERC20contract[method](...args);
+      console.log('ViewOnly: ', ERC20contract);
+      let erc20 = await ERC20contract[method](...args)
+        .then((result: any) => result)
+        .catch((err: any) => err);
+      console.log('erc20: ', erc20);
       if (typeof erc20 === 'object') {
-        erc20 = quais.utils.formatEther(erc20);
+        erc20 = quais.formatQuai(erc20);
       }
       return Promise.resolve({ result: erc20, method: method });
     } else {
-      const erc20 = await ERC20contract[method](...args);
-      const txReceipt = await pollFor(rpcProvider, 'getTransactionReceipt', [erc20.hash], 1.5, 1);
-      console.log('txReceipt', txReceipt);
+      console.log(method);
+      const contractTransaction = await ERC20contract.transfer(...args);
+      const txReceipt = await contractTransaction.wait();
       return Promise.resolve(txReceipt);
     }
   } catch (err) {
@@ -72,12 +76,12 @@ export const callERC721ContractMethod = async (
     if (viewOnly) {
       let erc721 = await ERC721contract[method](...args);
       if (typeof erc721 === 'object') {
-        erc721 = quais.utils.formatUnits(erc721, 'wei');
+        erc721 = quais.formatUnits(erc721, 'wei');
       }
       return Promise.resolve({ result: erc721, method: method });
     } else {
-      const erc721 = await ERC721contract[method](...args);
-      const txReceipt = await pollFor(rpcProvider, 'getTransactionReceipt', [erc721.hash], 1.5, 1);
+      const contractTransaction = await ERC721contract[method](...args);
+      const txReceipt = await contractTransaction.wait();
       return Promise.resolve(txReceipt);
     }
   } catch (err) {

@@ -9,43 +9,40 @@ export const shortenAddress = (address: string) => {
 };
 
 export const sortedQuaiShardNames: ShardNames = {
-  'zone-0-0': { name: 'Cyprus-1', rpcName: 'cyprus1' },
-  'zone-0-1': { name: 'Cyprus-2', rpcName: 'cyprus2' },
-  'zone-0-2': { name: 'Cyprus-3', rpcName: 'cyprus3' },
-  'zone-1-0': { name: 'Paxos-1', rpcName: 'paxos1' },
-  'zone-1-1': { name: 'Paxos-2', rpcName: 'paxos2' },
-  'zone-1-2': { name: 'Paxos-3', rpcName: 'paxos3' },
-  'zone-2-0': { name: 'Hydra-1', rpcName: 'hydra1' },
-  'zone-2-1': { name: 'Hydra-2', rpcName: 'hydra2' },
-  'zone-2-2': { name: 'Hydra-3', rpcName: 'hydra3' },
+  '0x00': { name: 'Cyprus-1', rpcName: 'cyprus1' },
 };
 
 // ---- explorer url builders ---- //
-export const buildRpcUrl = (shardName: string) => {
-  return `https://rpc.${shardName}.colosseum.quaiscan.io/`;
+export const buildRpcUrl = () => {
+  return `http://rpc.orchard.quai.network`;
 };
 
-export const buildExplorerUrl = (shardName: string) => {
-  return `https://${shardName}.colosseum.quaiscan.io`;
+export const buildExplorerUrl = () => {
+  return `https://quaiscan.io`;
 };
 
-export const buildAddressUrl = (shardName: string, address: string) => {
-  return `https://${shardName}.colosseum.quaiscan.io/address/${address}`;
+export const buildAddressUrl = (address: string) => {
+  return `https://quaiscan.io/address/${address}`;
 };
 
-export const buildTransactionUrl = (shardName: string, txHash: string) => {
-  return `https://${shardName}.colosseum.quaiscan.io/tx/${txHash}`;
+export const buildTransactionUrl = (txHash: string) => {
+  return `https://quaiscan.io/tx/${txHash}`;
 };
 
 // ---- dispatchers ---- //
 export const dispatchAccount = (accounts: Array<string> | undefined, dispatch: any) => {
   if (accounts?.length !== 0 && accounts !== undefined) {
-    const shard = quais.utils.getShardFromAddress(accounts[0]);
+    const shard = quais.getZoneForAddress(accounts[0]);
+    if (shard === null) {
+      dispatch({ type: 'SET_RPC_PROVIDER', payload: undefined });
+      dispatch({ type: 'SET_ACCOUNT', payload: undefined });
+      return;
+    }
     const account = {
       addr: accounts[0],
-      shard: sortedQuaiShardNames[shard],
+      shard: shard,
     };
-    const rpcProvider = new quais.providers.JsonRpcProvider(buildRpcUrl(account.shard.rpcName));
+    const rpcProvider = new quais.JsonRpcProvider(buildRpcUrl());
     dispatch({ type: 'SET_RPC_PROVIDER', payload: rpcProvider });
     dispatch({ type: 'SET_ACCOUNT', payload: account });
   } else {
@@ -58,7 +55,7 @@ export const dispatchAccount = (accounts: Array<string> | undefined, dispatch: a
 
 export const validateAddress = (address: string) => {
   if (address === '') return false;
-  return quais.utils.isAddress(address);
+  return quais.isAddress(address);
 };
 
 export const validateERC20MethodTypes = (method: string, args: string) => {
@@ -97,7 +94,7 @@ export const assignTypesToArgs = (method: string, args: string | undefined, toke
     switch (type) {
       case 'uint256':
         if (tokenType === 'ERC20') {
-          return quais.utils.parseUnits(input.trim());
+          return quais.parseUnits(input.trim());
         } else {
           return parseInt(input);
         }

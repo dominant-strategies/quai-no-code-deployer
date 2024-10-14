@@ -26,25 +26,16 @@ const useGetAccounts = () => {
       return account;
     };
 
-    if (!window.ethereum) {
+    if (!window.pelagus) {
       dispatch({ type: 'SET_WEB3_PROVIDER', payload: undefined });
       return;
     } else {
-      let provider = window.ethereum;
-      if (window.ethereum.providers?.length) {
-        // set provider once found rather than returning
-        window.ethereum.providers.find(async (p: any) => {
-          if (p.isPelagus) provider = p;
-        });
-      }
-      if (provider?.isPelagus) {
-        const web3provider = new quais.providers.Web3Provider(provider);
-        dispatch({ type: 'SET_WEB3_PROVIDER', payload: web3provider });
-        getAccounts(web3provider);
-        provider.on('accountsChanged', (accounts: Array<string> | undefined) => dispatchAccount(accounts, dispatch));
-      } else {
-        dispatch({ type: 'SET_WEB3_PROVIDER', payload: undefined });
-      }
+      const web3provider = new quais.BrowserProvider(window.pelagus);
+      dispatch({ type: 'SET_WEB3_PROVIDER', payload: web3provider });
+      getAccounts(web3provider);
+      window.pelagus.on('accountsChanged', (accounts: Array<string> | undefined) =>
+        dispatchAccount(accounts, dispatch)
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -30,16 +30,10 @@ const ERC721Interact = () => {
       setIsError({ error: false, message: '' });
       return;
     }
-    const contractShard = quais.utils.getShardFromAddress(e.target.value);
+    const contractShard = quais.getZoneForAddress(e.target.value);
     if (!contractShard) {
       setIsError({ error: true, message: 'Invalid contract address' });
       return;
-    }
-    const formattedContractShard = sortedQuaiShardNames[contractShard];
-    if (formattedContractShard.rpcName === account?.shard.rpcName) {
-      setIsError({ error: false, message: '' });
-    } else {
-      setIsError({ error: true, message: 'Contract address is not on the same shard as your connected account.' });
     }
   };
 
@@ -77,7 +71,7 @@ const ERC721Interact = () => {
               {txData?.transactionHash ? (
                 <Button
                   variant="link"
-                  href={buildTransactionUrl(account!.shard.rpcName, txData.transactionHash)}
+                  href={buildTransactionUrl(txData.transactionHash)}
                   newTab={true}
                   color="background.secondary"
                   fontWeight="600"

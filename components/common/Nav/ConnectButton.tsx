@@ -2,7 +2,7 @@
 
 import { Flex, Text } from '@chakra-ui/react';
 import { Button } from '@/components/ui';
-import { shortenAddress } from '@/components/lib/utils';
+import { shortenAddress, sortedQuaiShardNames } from '@/components/lib/utils';
 import { useContext } from 'react';
 import { StateContext, DispatchContext } from '@/store';
 import { requestAccounts } from '@/components/lib/wallet';
@@ -34,7 +34,7 @@ const ConnectButton = () => {
         <Button variant="primary" size="md" onClick={connectHandler} disabled={!!account} w="fit-content">
           {account ? (
             <Flex gap="10px">
-              <Text variant="p2-bold">{account.shard.name}</Text>
+              <Text variant="p2-bold">{sortedQuaiShardNames[account.shard].name}</Text>
               <Text>{shortenAddress(account.addr)}</Text>
             </Flex>
           ) : (

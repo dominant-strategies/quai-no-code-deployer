@@ -1,11 +1,10 @@
-import { ExternalProvider } from 'quais';
+import { AbstractProvider, Eip1193Provider } from 'quais';
 
 declare global {
   interface Window {
-    ethereum?: ExternalProvider;
+    pelagus?: Eip1193Provider & AbstractProvider;
   }
   // ---- page + component props ---- //
-
   interface PageContextType {
     activePage: string;
     setActivePage: (page: string) => void;
@@ -26,7 +25,6 @@ declare global {
     setFormState: Dispatch<SetStateAction<ERC20FormStateProps>>;
     account: account;
   }
-
   type CodeBlockProps = Omit<JSX.IntrinsicElements['pre'], 'children'> &
     CodeBlockVariantProps & {
       fileName: string;
@@ -36,40 +34,9 @@ declare global {
 
   // ---- data types ---- //
   type provider = { web3: any | undefined; rpc: any | undefined };
-  type account = { addr: string; shard: { name: PlainTextShardName; rpcName: RPCShardName } } | undefined;
-  type NumericalShardName =
-    | 'zone-0-0'
-    | 'zone-0-1'
-    | 'zone-0-2'
-    | 'zone-1-0'
-    | 'zone-1-1'
-    | 'zone-1-2'
-    | 'zone-2-0'
-    | 'zone-2-1'
-    | 'zone-2-2';
-
-  type PlainTextShardName =
-    | 'Cyprus-1'
-    | 'Cyprus-2'
-    | 'Cyprus-3'
-    | 'Paxos-1'
-    | 'Paxos-2'
-    | 'Paxos-3'
-    | 'Hydra-1'
-    | 'Hydra-2'
-    | 'Hydra-3';
-  type RPCShardName =
-    | 'cyprus1'
-    | 'cyprus2'
-    | 'cyprus3'
-    | 'paxos1'
-    | 'paxos2'
-    | 'paxos3'
-    | 'hydra1'
-    | 'hydra2'
-    | 'hydra3';
+  type account = { addr: string; shard: string } | undefined;
   type ShardNames = {
-    [key: string]: { name: PlainTextShardName; rpcName: RPCShardName };
+    [key: string]: { name: string; rpcName: string };
   };
   type CodingLanguage = {
     [key: string]: { icon: any; color: string };
@@ -95,7 +62,6 @@ declare global {
     symbol: string;
     supply: string;
     web3Provider: any;
-    rpcProvider: any;
   }
   interface DeployERC721Props {
     name: string;
@@ -104,6 +70,5 @@ declare global {
     uri: string;
     collectionSize: string;
     web3Provider: any;
-    rpcProvider: any;
   }
 }
