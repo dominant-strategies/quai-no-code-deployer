@@ -40,7 +40,7 @@ export const dispatchAccount = (accounts: Array<string> | undefined, dispatch: a
     }
     const account = {
       addr: accounts[0],
-      shard: sortedQuaiShardNames[shard],
+      shard: shard,
     };
     const rpcProvider = new quais.JsonRpcProvider(buildRpcUrl());
     dispatch({ type: 'SET_RPC_PROVIDER', payload: rpcProvider });
