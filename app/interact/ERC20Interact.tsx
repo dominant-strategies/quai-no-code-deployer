@@ -35,12 +35,6 @@ const ERC20Interact = () => {
       setIsError({ error: true, message: 'Invalid contract address' });
       return;
     }
-    const formattedContractShard = sortedQuaiShardNames[contractShard];
-    if (formattedContractShard.rpcName === account?.shard.rpcName) {
-      setIsError({ error: false, message: '' });
-    } else {
-      setIsError({ error: true, message: 'Contract address is not on the same shard as your connected account.' });
-    }
   };
 
   const handleInteract = async (method: string) => {
