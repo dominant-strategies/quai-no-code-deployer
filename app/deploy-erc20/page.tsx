@@ -53,7 +53,7 @@ const DeployERC20 = () => {
           <Flex direction="column">
             <Button
               variant="link"
-              href={buildTransactionUrl(account!.shard.rpcName, erc20.deployTransaction.hash)}
+              href={buildTransactionUrl(erc20.deployTransaction.hash)}
               newTab={true}
               fontWeight="600"
               color="background.secondary"
