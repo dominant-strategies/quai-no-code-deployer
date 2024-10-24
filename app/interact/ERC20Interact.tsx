@@ -7,7 +7,6 @@ import { Flex, Text, Input, useToast, VStack, FormControl, FormErrorMessage } fr
 import { quais } from 'quais';
 import ERC20 from '@/components/lib/contracts/erc20/ERC20.json';
 import { NoInputButton, InputButton } from './Buttons';
-import { sortedQuaiShardNames } from '@/components/lib/utils';
 import { Button } from '@/components/ui';
 import { StateContext } from '@/store';
 

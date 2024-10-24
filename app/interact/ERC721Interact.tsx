@@ -7,7 +7,6 @@ import { callERC721ContractMethod } from '@/components/lib/interactions/interact
 import { quais } from 'quais';
 import ERC721 from '@/components/lib/contracts/erc721/JsonURI/ERC721.json';
 import { NoInputButton, InputButton } from './Buttons';
-import { sortedQuaiShardNames } from '@/components/lib/utils';
 import { Button } from '@/components/ui';
 import { StateContext } from '@/store';
 

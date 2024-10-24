@@ -29,7 +29,7 @@ export const callERC20ContractMethod = async (
     const ERC20contract = new quais.Contract(contractAddress, ERC20.abi, await web3Provider.getSigner());
     console.log(ERC20contract);
     if (viewOnly === true) {
-      console.log('ViewOnly: ', ERC20contract);
+      console.log('ViewOnly: ', method);
       let erc20 = await ERC20contract[method](...args)
         .then((result: any) => result)
         .catch((err: any) => err);
@@ -40,7 +40,7 @@ export const callERC20ContractMethod = async (
       return Promise.resolve({ result: erc20, method: method });
     } else {
       console.log(method);
-      const contractTransaction = await ERC20contract.transfer(...args);
+      const contractTransaction = await ERC20contract[method](...args);
       const txReceipt = await contractTransaction.wait();
       return Promise.resolve(txReceipt);
     }
