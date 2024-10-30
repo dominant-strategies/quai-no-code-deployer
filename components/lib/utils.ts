@@ -14,7 +14,7 @@ export const sortedQuaiShardNames: ShardNames = {
 
 // ---- explorer url builders ---- //
 export const buildRpcUrl = () => {
-  return `http://rpc.orchard.quai.network`;
+  return `http://rpc.quai.network`;
 };
 
 export const buildExplorerUrl = () => {
