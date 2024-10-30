@@ -9,6 +9,7 @@ import { deployToken } from '@/components/lib/interactions/deploy';
 import { StateContext } from '@/store';
 import { buildTransactionUrl } from '@/components/lib/utils';
 import ERC20 from '@/components/lib/contracts/erc20/ERC20';
+import { BaseContract } from 'quais';
 
 const DeployERC20 = () => {
   const toast = useToast();
@@ -47,13 +48,13 @@ const DeployERC20 = () => {
         description: '',
         position: 'top-right',
       },
-      success: ({ erc20, txReceipt }: any) => ({
+      success: (erc20: BaseContract) => ({
         title: `${name} deployed successfully!`,
         description: (
           <Flex direction="column">
             <Button
               variant="link"
-              href={buildTransactionUrl(erc20.deployTransaction.hash)}
+              href={buildTransactionUrl(erc20.deploymentTransaction()!.hash)}
               newTab={true}
               fontWeight="600"
               color="background.secondary"
@@ -62,7 +63,7 @@ const DeployERC20 = () => {
               View In Explorer
             </Button>
             <Text variant="p2" color="background.secondary">
-              Contract Address: {txReceipt.contractAddress}
+              Contract Address: {erc20.target.toString()}
             </Text>
           </Flex>
         ),

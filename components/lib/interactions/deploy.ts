@@ -9,11 +9,8 @@ export const deployToken = async ({ name, symbol, supply, web3Provider }: Deploy
     const ERC20contract = new quais.ContractFactory(ERC20.abi, ERC20.bytecode, signer);
     console.log('Deploying ERC20 token...', ERC20contract);
     const erc20 = await ERC20contract.deploy(name, symbol, quais.parseUnits(supply));
-    console.log('Token deploy transaction: ', erc20.deploymentTransaction);
     await erc20.waitForDeployment();
-    console.log('Token deployed to: ', await erc20.getAddress());
-    const deploymentTx = erc20.deploymentTransaction;
-    return Promise.resolve({ erc20, deploymentTx });
+    return Promise.resolve(erc20);
   } catch (err) {
     return Promise.reject(err);
   }
@@ -33,8 +30,7 @@ export const deployNFT = async ({ name, symbol, extension, uri, collectionSize, 
     const ERC721contract = new quais.ContractFactory(ABI.abi, ABI.bytecode, signer);
     const erc721 = await ERC721contract.deploy(name, symbol, uri, collectionSize, { gasLimit: 5000000 });
     await erc721.waitForDeployment();
-    const deploymentTx = erc721.deploymentTransaction;
-    return Promise.resolve({ erc721, deploymentTx });
+    return Promise.resolve(erc721);
   } catch (err) {
     return Promise.reject(err);
   }

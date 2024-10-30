@@ -9,6 +9,7 @@ import { deployNFT } from '@/components/lib/interactions/deploy';
 import { StateContext } from '@/store';
 import { buildTransactionUrl } from '@/components/lib/utils';
 import ERC721 from '@/components/lib/contracts/erc721/JsonURI/ERC721';
+import { BaseContract } from 'quais';
 
 const DeployERC721 = () => {
   const toast = useToast();
@@ -59,13 +60,13 @@ const DeployERC721 = () => {
         description: '',
         position: 'top-right',
       },
-      success: ({ erc721, txReceipt }: any) => ({
+      success: (erc721: BaseContract) => ({
         title: `${name} deployed successfully!`,
         description: (
           <Flex direction="column">
             <Button
               variant="link"
-              href={buildTransactionUrl(erc721.deployTransaction.hash)}
+              href={buildTransactionUrl(erc721.deploymentTransaction()!.hash)}
               newTab={true}
               fontWeight="600"
               textDecoration="underline"
@@ -74,7 +75,7 @@ const DeployERC721 = () => {
               View In Explorer
             </Button>
             <Text variant="p2" color="background.secondary">
-              Contract Address: {txReceipt.contractAddress}
+              Contract Address: {erc721.target.toString()}
             </Text>
           </Flex>
         ),
