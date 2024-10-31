@@ -22,27 +22,29 @@ export const callERC20ContractMethod = async (
   args: Array<any>,
   contractAddress: string,
   web3Provider: any,
-  rpcProvider: any,
   viewOnly: boolean | undefined
 ) => {
   try {
     const ERC20contract = new quais.Contract(contractAddress, ERC20.abi, await web3Provider.getSigner());
     console.log(ERC20contract);
     if (viewOnly === true) {
-      console.log('ViewOnly: ', method);
       let erc20 = await ERC20contract[method](...args)
         .then((result: any) => result)
         .catch((err: any) => err);
-      console.log('erc20: ', erc20);
-      if (typeof erc20 === 'object') {
-        erc20 = quais.formatQuai(erc20);
+      if (typeof erc20 === 'bigint') {
+        if (method === 'decimals') {
+          erc20 = erc20.toString();
+        } else {
+          erc20 = quais.formatUnits(erc20, 18);
+        }
+      } else if (typeof erc20 === 'object') {
+        return Promise.reject(erc20);
       }
       return Promise.resolve({ result: erc20, method: method });
     } else {
-      console.log(method);
       const contractTransaction = await ERC20contract[method](...args);
       const txReceipt = await contractTransaction.wait();
-      return Promise.resolve(txReceipt);
+      return Promise.resolve({ result: txReceipt, method: method });
     }
   } catch (err) {
     return Promise.reject(err);
@@ -68,21 +70,23 @@ export const callERC721ContractMethod = async (
   args: Array<any>,
   contractAddress: string,
   web3Provider: any,
-  rpcProvider: any,
   viewOnly: boolean | undefined
 ) => {
   try {
-    const ERC721contract = new quais.Contract(contractAddress, ERC721.abi, web3Provider.getSigner());
+    const ERC721contract = new quais.Contract(contractAddress, ERC721.abi, await web3Provider.getSigner());
     if (viewOnly) {
       let erc721 = await ERC721contract[method](...args);
-      if (typeof erc721 === 'object') {
+      if (typeof erc721 === 'bigint') {
         erc721 = quais.formatUnits(erc721, 'wei');
+      } else if (typeof erc721 === 'object') {
+        return Promise.reject(erc721);
       }
       return Promise.resolve({ result: erc721, method: method });
     } else {
       const contractTransaction = await ERC721contract[method](...args);
       const txReceipt = await contractTransaction.wait();
-      return Promise.resolve(txReceipt);
+      console.log(txReceipt);
+      return Promise.resolve({ result: txReceipt, method: method });
     }
   } catch (err) {
     return Promise.reject(err);
