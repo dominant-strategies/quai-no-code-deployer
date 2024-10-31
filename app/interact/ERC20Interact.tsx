@@ -9,6 +9,7 @@ import ERC20 from '@/components/lib/contracts/erc20/ERC20.json';
 import { NoInputButton, InputButton } from './Buttons';
 import { Button } from '@/components/ui';
 import { StateContext } from '@/store';
+import { ContractTransactionReceipt } from 'quais';
 
 const ERC20Interact = () => {
   const toast = useToast();
@@ -55,20 +56,20 @@ const ERC20Interact = () => {
     } else {
       viewOnly = false;
     }
-    toast.promise(callERC20ContractMethod(method, parsedInputs, contractAddress, web3Provider, rpcProvider, viewOnly), {
+    toast.promise(callERC20ContractMethod(method, parsedInputs, contractAddress, web3Provider, viewOnly), {
       loading: {
         title: 'Broadcasting Transaction',
         description: '',
         position: 'top-right',
       },
-      success: (txData: any) => ({
-        title: `${txData?.transactionHash ? 'Transaction Successful' : 'View-only data:'}`,
+      success: ({ result, method }: { result: ContractTransactionReceipt | any; method: string }) => ({
+        title: `${result?.hash ? 'Transaction Successful' : 'View-only data:'}`,
         description: (
           <Flex direction="column" gap={2}>
-            {txData?.transactionHash ? (
+            {result?.hash ? (
               <Button
                 variant="link"
-                href={buildTransactionUrl(txData.transactionHash)}
+                href={buildTransactionUrl(result.hash)}
                 newTab={true}
                 color="background.secondary"
                 fontWeight="600"
@@ -78,7 +79,7 @@ const ERC20Interact = () => {
               </Button>
             ) : (
               <Text variant="p2" textTransform="capitalize" color="background.secondary">
-                {txData.method}: {txData.result}
+                {method}: {result}
               </Text>
             )}
           </Flex>
